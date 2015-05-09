@@ -27,6 +27,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
+import java.awt.Window.Type;
+import javax.swing.BoxLayout;
+import java.awt.Font;
+import javax.swing.JTextPane;
 
 public class GlavniProzor extends JFrame {
 
@@ -43,6 +47,13 @@ public class GlavniProzor extends JFrame {
 	private int brojac = 1;
 	private JButton button;
 	private JButton button_1;
+	private JPanel panel_2;
+	private JLabel lblDobrodosliUBioskop;
+	private JLabel lblInfo;
+	private JLabel lblLokacijaNepoznata;
+	private JLabel lblBrojSala;
+	private JLabel lblApsolutnoNebitan;
+	private JLabel label;
 	
 	
 	
@@ -67,6 +78,8 @@ public class GlavniProzor extends JFrame {
 	 * Create the frame.
 	 */
 	public GlavniProzor() {
+		setResizable(false);
+		setTitle("Bioskop Eclipse\r\n");
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
@@ -97,12 +110,25 @@ public class GlavniProzor extends JFrame {
 	private JButton getBtnPrikaz() {
 		if (btnPrikaz == null) {
 			btnPrikaz = new JButton("Vidi dostupne filmove");
+			btnPrikaz.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					PrikazFilmovaGUI prikazi = new PrikazFilmovaGUI();
+					prikazi.setVisible(true);
+					prikazi.setLocationRelativeTo(contentPane);
+				}
+			});
 		}
 		return btnPrikaz;
 	}
 	private JButton getBtnRezervisiKarte() {
 		if (btnRezervisiKarte == null) {
 			btnRezervisiKarte = new JButton("Rezervisi karte");
+			btnRezervisiKarte.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					RezervacijeGUI rezervacije = new RezervacijeGUI();
+					rezervacije.setVisible(true);
+					rezervacije.setLocationRelativeTo(contentPane);				}
+			});
 			btnRezervisiKarte.setPreferredSize(new Dimension(133, 23));
 		}
 		return btnRezervisiKarte;
@@ -144,6 +170,7 @@ public class GlavniProzor extends JFrame {
 	private JTabbedPane getTabbedPane() {
 		if (tabbedPane == null) {
 			tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+			tabbedPane.addTab("O nama", null, getPanel_2_1(), null);
 			tabbedPane.addTab("Galerija", null, getPanel_2(), null);
 		}
 		return tabbedPane;
@@ -176,7 +203,7 @@ public class GlavniProzor extends JFrame {
 					brojac--;
 					if(brojac == 0) brojac=3;
 					String adresa = "/galerija/"+brojac +".jpg";
-					System.out.println(adresa);
+					
 					lblNewLabel.setIcon(new ImageIcon(GlavniProzor.class.getResource(adresa)));
 					
 				}
@@ -193,7 +220,7 @@ public class GlavniProzor extends JFrame {
 					brojac++;
 					if(brojac == 4) brojac=1;
 					String adresa = "/galerija/"+brojac +".jpg";
-					System.out.println(adresa);
+				
 					lblNewLabel.setIcon(new ImageIcon(GlavniProzor.class.getResource(adresa)));
 					
 				}
@@ -201,5 +228,62 @@ public class GlavniProzor extends JFrame {
 			button_1.setBounds(236, 228, 50, 23);
 		}
 		return button_1;
+	}
+	private JPanel getPanel_2_1() {
+		if (panel_2 == null) {
+			panel_2 = new JPanel();
+			panel_2.setLayout(null);
+			panel_2.add(getLblDobrodosliUBioskop());
+			panel_2.add(getLblInfo());
+			panel_2.add(getLblLokacijaNepoznata());
+			panel_2.add(getLblBrojSala());
+			panel_2.add(getLblApsolutnoNebitan());
+			panel_2.add(getLabel());
+		}
+		return panel_2;
+	}
+	private JLabel getLblDobrodosliUBioskop() {
+		if (lblDobrodosliUBioskop == null) {
+			lblDobrodosliUBioskop = new JLabel("Dobrodosli u bioskop Eclipse");
+			lblDobrodosliUBioskop.setFont(new Font("Tahoma", Font.BOLD, 14));
+			lblDobrodosliUBioskop.setBounds(21, 11, 208, 28);
+		}
+		return lblDobrodosliUBioskop;
+	}
+	private JLabel getLblInfo() {
+		if (lblInfo == null) {
+			lblInfo = new JLabel("Info:");
+			lblInfo.setBounds(50, 50, 46, 14);
+		}
+		return lblInfo;
+	}
+	private JLabel getLblLokacijaNepoznata() {
+		if (lblLokacijaNepoznata == null) {
+			lblLokacijaNepoznata = new JLabel("Lokacija: nepoznata");
+			lblLokacijaNepoznata.setBounds(60, 87, 116, 14);
+		}
+		return lblLokacijaNepoznata;
+	}
+	private JLabel getLblBrojSala() {
+		if (lblBrojSala == null) {
+			lblBrojSala = new JLabel("Broj sala: 4");
+			lblBrojSala.setBounds(60, 112, 63, 14);
+		}
+		return lblBrojSala;
+	}
+	private JLabel getLblApsolutnoNebitan() {
+		if (lblApsolutnoNebitan == null) {
+			lblApsolutnoNebitan = new JLabel("Apsolutno nebitan tekst ali nemam ideju sta da stavim ovamo");
+			lblApsolutnoNebitan.setBounds(60, 137, 388, 14);
+		}
+		return lblApsolutnoNebitan;
+	}
+	private JLabel getLabel() {
+		if (label == null) {
+			label = new JLabel("");
+			label.setIcon(new ImageIcon(GlavniProzor.class.getResource("/galerija/4.gif")));
+			label.setBounds(348, 24, 100, 90);
+		}
+		return label;
 	}
 }
