@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,20 +15,31 @@ import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
+
 import java.awt.Font;
+
+import main.Utility;
 import net.miginfocom.swing.MigLayout;
+
 import java.awt.FlowLayout;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class GlavniProzor extends JFrame {
 
@@ -113,6 +125,7 @@ public class GlavniProzor extends JFrame {
 					PrikazFilmovaGUI prikazi = new PrikazFilmovaGUI();
 					prikazi.setVisible(true);
 					prikazi.setLocationRelativeTo(contentPane);
+					
 				}
 			});
 		}

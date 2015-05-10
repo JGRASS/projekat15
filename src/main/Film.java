@@ -6,11 +6,19 @@ public class Film {
 	private String reziser;
 	private String zanr;
 	private String ocena;
+	private String adresaSlike;
+
+	public String getAdresaSlike() {
+		return adresaSlike;
+	}
+
+	public void setAdresaSlike(String adresaSlike) {
+		this.adresaSlike = adresaSlike;
+	}
 
 	@Override
 	public String toString() {
-		return "Film [nazivFilma=" + nazivFilma + ", reziser=" + reziser
-				+ ", zanr=" + zanr + ", ocena=" + ocena + "]";
+		return nazivFilma + ", " + zanr +", " +ocena;
 	}
 
 	public String getNazivFilma() {
