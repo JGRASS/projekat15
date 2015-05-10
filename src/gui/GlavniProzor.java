@@ -2,8 +2,6 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.JobAttributes;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -27,10 +25,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
-import java.awt.Window.Type;
-import javax.swing.BoxLayout;
 import java.awt.Font;
-import javax.swing.JTextPane;
+import net.miginfocom.swing.MigLayout;
+import java.awt.FlowLayout;
 
 public class GlavniProzor extends JFrame {
 
@@ -102,6 +99,7 @@ public class GlavniProzor extends JFrame {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
 			panel_1.setPreferredSize(new Dimension(500, 40));
+			panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 			panel_1.add(getBtnPrikaz());
 			panel_1.add(getBtnRezervisiKarte());
 		}
