@@ -209,7 +209,7 @@ public class RezervacijeGUI extends JFrame {
 	
 	private JLabel getLblVreme() {
 		if (lblVreme == null) {
-			lblVreme = new JLabel("Vreme(h)");
+			lblVreme = new JLabel("Vreme");
 			lblVreme.setBounds(371, 33, 62, 14);
 		}
 		return lblVreme;
@@ -227,23 +227,23 @@ public class RezervacijeGUI extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 			if(comboBoxFilmovi.getSelectedItem().toString().equals("Bezvremenska Adaline") && comboBoxSala.getSelectedItem().toString().equals("Sala 2")) {
 						comboBoxVreme.setEnabled(true);
-						comboBoxVreme.setModel(new DefaultComboBoxModel(new String[] {"16", "22"}));
+						comboBoxVreme.setModel(new DefaultComboBoxModel(new String[] {"16:15", "22:00"}));
 					} else {
 						if(comboBoxSala.getSelectedItem().toString().equals("Sala 2")) {
 							comboBoxVreme.setEnabled(true);
-							comboBoxVreme.setModel(new DefaultComboBoxModel(new String[] {"18"}));
+							comboBoxVreme.setModel(new DefaultComboBoxModel(new String[] {"18:00"}));
 						} else {
 							if(comboBoxSala.getSelectedItem().toString().equals("Sala 1")) {
 								comboBoxVreme.setEnabled(true);
-								comboBoxVreme.setModel(new DefaultComboBoxModel(new String[] {"17", "19", "21"}));
+								comboBoxVreme.setModel(new DefaultComboBoxModel(new String[] {"17:20", "19:00", "21:10"}));
 							} else {
 								if(comboBoxSala.getSelectedItem().toString().equals("Sala 3")) {
 									comboBoxVreme.setEnabled(true);
-									comboBoxVreme.setModel(new DefaultComboBoxModel(new String[] {"20", "22"}));
+									comboBoxVreme.setModel(new DefaultComboBoxModel(new String[] {"20:00", "22:15"}));
 								} else {
 									if(comboBoxSala.getSelectedItem().toString().equals("Sala 4")) {
 										comboBoxVreme.setEnabled(true);
-										comboBoxVreme.setModel(new DefaultComboBoxModel(new String[] {"20", "23"}));
+										comboBoxVreme.setModel(new DefaultComboBoxModel(new String[] {"20:45", "23:00"}));
 									}
 			
 								}
@@ -345,16 +345,16 @@ public class RezervacijeGUI extends JFrame {
 			btnRezervii.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					if(textFieldUnesiImeIPrezime.getText().isEmpty()) {    // ako je ime i prezime prazno, poruka da se obavezno popuni
-					JOptionPane.showConfirmDialog(contentPane,
+					JOptionPane.showMessageDialog(contentPane,
 							"Obavezno popuniti polje Ime i prezime!", "Obaveštenje",
-							JOptionPane.OK_CANCEL_OPTION);
+							JOptionPane.INFORMATION_MESSAGE);
 				} else {   
 					broj = 0;
 					
 					PomocnaProjekcija rez = new PomocnaProjekcija();
 					
 					
-					rez.setVreme(Integer.parseInt((comboBoxVreme.getSelectedItem().toString())));
+					rez.setVreme(((comboBoxVreme.getSelectedItem().toString())));
 					rez.setNazivFilma(comboBoxFilmovi.getSelectedItem().toString());
 					rez.setSala(comboBoxSala.getSelectedItem().toString());
 				
@@ -379,10 +379,10 @@ public class RezervacijeGUI extends JFrame {
 					int s = textFieldUnesiImeIPrezime.hashCode();
 					
 				
-					JOptionPane.showConfirmDialog(contentPane, "Vas kod je "+s+"\nFilm: " 
+					JOptionPane.showMessageDialog(contentPane, "Vas kod je "+s+"\nFilm: " 
 					+comboBoxFilmovi.getSelectedItem().toString()+"\n"
 							+comboBoxSala.getSelectedItem().toString()+" \nVreme "+comboBoxVreme.getSelectedItem().toString()
-							+"\nUkupna cena ulaznica je "+ Integer.parseInt(textFieldCena.getText().toString())*vratiBrojUlaznica(),"Uspesno obavljena rezervacija", JOptionPane.OK_CANCEL_OPTION);
+							+"\nUkupna cena ulaznica je "+ Integer.parseInt(textFieldCena.getText().toString())*vratiBrojUlaznica(),"Uspesno obavljena rezervacija", JOptionPane.INFORMATION_MESSAGE);
 				}
 				}
 				

@@ -16,7 +16,7 @@ public class PomocnaProjekcija {
 	/**
 	 * vreme pocetka filma
 	 */
-	private int vreme;     //u GUI opcija concat za vreme (:)
+	private String vreme;     
 	
 	/**
 	 * metoda koja vraca naziv filma
@@ -67,23 +67,24 @@ public class PomocnaProjekcija {
 
 	/**
 	 * metoda koja vraca vreme u casovima
-	 * @return vreme kao int
+	 * @return vreme kao String
 	 */
-	public int getVreme() {
+	public String getVreme() {
 		return vreme;
 	}
 
 	/**
 	 *  postavlja vrednost atributa vreme na unetu vrednost
-	 * @param vreme kao int
+	 * @param vreme kao String
 	 * @throws java.lang.RuntimeException
 	 * <ul>
-	 *<li>uneto vreme manje ili jednako 0</li>
+	 *<li>uneto vreme null</li>
+	 *<li>prazan string</li>
 	 *</ul>
 	 */
-	public void setVreme(int vreme) {
-		if(vreme<= 0) {
-			throw new RuntimeException("Vreme ne sme biti 0 ili manje od 0"); 
+	public void setVreme(String vreme) {
+		if(vreme.equals(null) || vreme.isEmpty()) {
+			throw new RuntimeException("Vreme ne sme biti null ili prazan String"); 
 		}
 		this.vreme = vreme;
 	}
@@ -96,7 +97,7 @@ public class PomocnaProjekcija {
 		
 		PomocnaProjekcija pom = (PomocnaProjekcija)obj;
 		
-			if(pom.getSala().equals(sala) && pom.getVreme() == vreme) {
+			if(pom.getSala().equals(sala) && pom.getVreme().equals(vreme)) {
 				return true;
 			} 
 		
@@ -105,7 +106,7 @@ public class PomocnaProjekcija {
 	
 	/**
 	 * Metoda toString 
-	 * @return naziv filma, sala i vreme(h) projekcije
+	 * @return naziv filma, sala i vreme projekcije
 	 */
 	public String toString() {
 		return "PomocnaProjekcija [nazivFilma=" + nazivFilma + ", sala=" + sala
