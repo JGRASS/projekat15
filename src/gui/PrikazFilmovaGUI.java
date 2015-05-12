@@ -100,6 +100,7 @@ public class PrikazFilmovaGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.add(getPanel(), BorderLayout.CENTER);
 		contentPane.add(getPanel_1(), BorderLayout.NORTH);
+		
 	}
 
 	private JPanel getPanel() {
