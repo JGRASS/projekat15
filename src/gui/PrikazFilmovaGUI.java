@@ -45,12 +45,15 @@ public class PrikazFilmovaGUI extends JFrame {
 	private JLabel lblFilmovi;
 	private JComboBox comboBox;
 	private JLabel Slika;
+	/**
+	 * Lista objekata tipa Film ucitana iz .txt fajla.
+	 */
 	private LinkedList<Film> lista =SOUcitajIzFajla.ucitajIzFajla();
 	private JScrollPane scrollPane;
 	private JTextArea Tekst;
 	private JPanel panel_2;
 	private JButton btnRezerviite;
-	private JButton btnNaPoetnu;
+	private JButton btnNazad;
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmRezerviite;
 	private JMenuItem mntmNazad;
@@ -74,7 +77,10 @@ public class PrikazFilmovaGUI extends JFrame {
 		contentPane.add(getPanel_1(), BorderLayout.NORTH);
 		
 	}
-
+	/**
+	 * Metoda koja vraca panel.
+	 * @return panel kao JPanel
+	 */
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -85,6 +91,10 @@ public class PrikazFilmovaGUI extends JFrame {
 		}
 		return panel;
 	}
+	/**
+	 * Metoda koja vraca panel_1.
+	 * @return panel_1 kao JPanel
+	 */
 	private JPanel getPanel_1() {
 		if (panel_1 == null) {
 			panel_1 = new JPanel();
@@ -93,12 +103,20 @@ public class PrikazFilmovaGUI extends JFrame {
 		}
 		return panel_1;
 	}
+	/**
+	 * Metoda koja vraca labelu Filmovi.
+	 * @return lblFilmovi kao JPanel
+	 */
 	private JLabel getLblFilmovi() {
 		if (lblFilmovi == null) {
 			lblFilmovi = new JLabel("Filmovi:");
 		}
 		return lblFilmovi;
 	}
+	/**
+	 * Metoda koja vraca comboBox koji kao stavke ima naslove filmova iz ucitane liste.
+	 * @return comboBox kao JComboBox
+	 */
 	private JComboBox getComboBox() {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
@@ -121,6 +139,10 @@ public class PrikazFilmovaGUI extends JFrame {
 		}
 		return comboBox;
 	}
+	/**
+	 * Metoda koja vraca labelu u kojoj se nalazi slika.
+	 * @return Slika kao JLabel
+	 */
 	private JLabel getSlika() {
 		if (Slika == null) {
 			Slika = new JLabel("");
@@ -130,6 +152,10 @@ public class PrikazFilmovaGUI extends JFrame {
 		}
 		return Slika;
 	}
+	/**
+	 * Metoda koja vraca scrollPane.
+	 * @return scrollPane kao JScrollPane
+	 */
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
@@ -138,6 +164,10 @@ public class PrikazFilmovaGUI extends JFrame {
 		}
 		return scrollPane;
 	}
+	/**
+	 * Metoda koja vraca labelu u kojoj se nalazi tekst.
+	 * @return Tekst kao JLabel
+	 */
 	private JTextArea getTekst() {
 		if (Tekst == null) {
 			Tekst = new JTextArea();
@@ -147,6 +177,10 @@ public class PrikazFilmovaGUI extends JFrame {
 		}
 		return Tekst;
 	}
+	/**
+	 * Metoda koja vraca panel_2.
+	 * @return panel_2 kao JPanel
+	 */
 	private JPanel getPanel_2() {
 		if (panel_2 == null) {
 			panel_2 = new JPanel();
@@ -156,8 +190,8 @@ public class PrikazFilmovaGUI extends JFrame {
 		}
 		return panel_2;
 	}
-	/**Dugme Rezervisite. Klikom na ovo dugme pokrece se prozor za rezervaciju karata i nestaje prozor za prikaz filmova.
-	 * @return JButton
+	/**Metoda koja vraca dugme Rezervisite. Klikom na ovo dugme pokrece se prozor za rezervaciju karata i nestaje prozor za prikaz filmova.
+	 * @return btnRezerviite kao JButton
 	 */
 	private JButton getBtnRezerviite() {
 		if (btnRezerviite == null) {
@@ -174,18 +208,25 @@ public class PrikazFilmovaGUI extends JFrame {
 		}
 		return btnRezerviite;
 	}
+	/**Metoda koja vraca dugme Nazad. Klikom na ovo dugme nestaje prozor za prikaz filmova.
+	 * @return btnNazad kao JButton
+	 */
 	private JButton getBtnNaPoetnu() {
-		if (btnNaPoetnu == null) {
-			btnNaPoetnu = new JButton("Nazad");
-			btnNaPoetnu.setToolTipText("Vratite se na po\u010Detnu stranu.");
-			btnNaPoetnu.addActionListener(new ActionListener() {
+		if (btnNazad == null) {
+			btnNazad = new JButton("Nazad");
+			btnNazad.setToolTipText("Vratite se na po\u010Detnu stranu.");
+			btnNazad.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					dispose();
 				}
 			});
 		}
-		return btnNaPoetnu;
+		return btnNazad;
 	}
+	/**
+	 * Metoda koja vraca popUpMenu.
+	 * @return popUpMenu kao JPopUpMenu
+	 */
 	private JPopupMenu getPopupMenu() {
 		if (popupMenu == null) {
 			popupMenu = new JPopupMenu();
@@ -194,6 +235,9 @@ public class PrikazFilmovaGUI extends JFrame {
 		}
 		return popupMenu;
 	}
+	/**
+	 * Metoda koja dodaje komponente popup menija.
+	 */
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -211,6 +255,10 @@ public class PrikazFilmovaGUI extends JFrame {
 			}
 		});
 	}
+	/**
+	 * Metoda koja vraca popUpMenu komponentu mntmRezerviite.
+	 * @return mntmRezerviite kao JMenuItem
+	 */
 	private JMenuItem getMntmRezerviite() {
 		if (mntmRezerviite == null) {
 			mntmRezerviite = new JMenuItem("Rezervi\u0161ite");
@@ -223,6 +271,10 @@ public class PrikazFilmovaGUI extends JFrame {
 		}
 		return mntmRezerviite;
 	}
+	/**
+	 * Metoda koja vraca popUpMenu komponentu mntmNazad.
+	 * @return mntmNazad kao JMenuItem
+	 */
 	private JMenuItem getMntmNazad() {
 		if (mntmNazad == null) {
 			mntmNazad = new JMenuItem("Nazad");

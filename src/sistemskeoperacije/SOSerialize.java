@@ -9,6 +9,11 @@ import java.util.LinkedList;
 import main.PomocnaProjekcija;
 
 public class SOSerialize {
+	/**
+	 * Metoda koja serijalizuje listu objekata tipa pomocna projekcija.
+	 * @param LinkedList<PomocnaProjekcija>
+	 * @throws IOException
+	 */
 	
 	public static void serialize(LinkedList<PomocnaProjekcija> lista){
 		

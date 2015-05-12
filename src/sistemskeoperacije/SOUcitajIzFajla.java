@@ -8,6 +8,11 @@ import java.util.LinkedList;
 import main.Film;
 
 public class SOUcitajIzFajla {
+	/**
+	 * Metoda koja ucitava listu filmova iz .txt fajla.
+	 * @return LinkedList<Film>
+	 * @throws IOException
+	 */
 
 	public static LinkedList<Film> ucitajIzFajla(){
 		LinkedList<Film> lista = new LinkedList<>();
