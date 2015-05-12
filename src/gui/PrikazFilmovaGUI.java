@@ -29,6 +29,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import sistemskeoperacije.SOUcitajIzFajla;
+import java.awt.Toolkit;
+import javax.swing.JButton;
+import java.awt.Component;
+import javax.swing.JPopupMenu;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JMenuItem;
 
 public class PrikazFilmovaGUI extends JFrame {
 
@@ -41,6 +48,12 @@ public class PrikazFilmovaGUI extends JFrame {
 	private LinkedList<Film> lista =SOUcitajIzFajla.ucitajIzFajla();
 	private JScrollPane scrollPane;
 	private JTextArea Tekst;
+	private JPanel panel_2;
+	private JButton btnRezerviite;
+	private JButton btnNaPoetnu;
+	private JPopupMenu popupMenu;
+	private JMenuItem mntmRezerviite;
+	private JMenuItem mntmNazad;
 
 	/**
 	 * Launch the application.
@@ -77,6 +90,8 @@ public class PrikazFilmovaGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public PrikazFilmovaGUI() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PrikazFilmovaGUI.class.getResource("/icons/logo.png")));
+		setTitle("Filmovi u ponudi");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -90,8 +105,10 @@ public class PrikazFilmovaGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
+			addPopup(panel, getPopupMenu());
 			panel.add(getSlika());
 			panel.add(getScrollPane());
+			panel.add(getPanel_2());
 		}
 		return panel;
 	}
@@ -156,5 +173,89 @@ public class PrikazFilmovaGUI extends JFrame {
 			Tekst.setEditable(false);
 		}
 		return Tekst;
+	}
+	private JPanel getPanel_2() {
+		if (panel_2 == null) {
+			panel_2 = new JPanel();
+			panel_2.setPreferredSize(new Dimension(100, 200));
+			panel_2.add(getBtnRezerviite());
+			panel_2.add(getBtnNaPoetnu());
+		}
+		return panel_2;
+	}
+	private JButton getBtnRezerviite() {
+		if (btnRezerviite == null) {
+			btnRezerviite = new JButton("Rezervi\u0161ite");
+			btnRezerviite.setToolTipText("Otvorite stranu za rezervacije!");
+			btnRezerviite.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziRezervacije();
+					dispose();
+				}
+			});
+			btnRezerviite.setAlignmentX(Component.RIGHT_ALIGNMENT);
+			btnRezerviite.setAlignmentY(Component.BOTTOM_ALIGNMENT);
+		}
+		return btnRezerviite;
+	}
+	private JButton getBtnNaPoetnu() {
+		if (btnNaPoetnu == null) {
+			btnNaPoetnu = new JButton("Nazad");
+			btnNaPoetnu.setToolTipText("Vratite se na po\u010Detnu stranu.");
+			btnNaPoetnu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dispose();
+				}
+			});
+		}
+		return btnNaPoetnu;
+	}
+	private JPopupMenu getPopupMenu() {
+		if (popupMenu == null) {
+			popupMenu = new JPopupMenu();
+			popupMenu.add(getMntmRezerviite());
+			popupMenu.add(getMntmNazad());
+		}
+		return popupMenu;
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
+	private JMenuItem getMntmRezerviite() {
+		if (mntmRezerviite == null) {
+			mntmRezerviite = new JMenuItem("Rezervi\u0161ite");
+			mntmRezerviite.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziRezervacije();
+					dispose();
+				}
+			});
+		}
+		return mntmRezerviite;
+	}
+	private JMenuItem getMntmNazad() {
+		if (mntmNazad == null) {
+			mntmNazad = new JMenuItem("Nazad");
+			mntmNazad.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				}
+			});
+		}
+		return mntmNazad;
 	}
 }
