@@ -10,9 +10,11 @@ import javax.swing.plaf.ColorUIResource;
 
 
 public class GUIKontroler {
+	
 	private static GlavniProzor gp;
 	/**
 	 * Launch the application.
+	 * @throws Exception
 	 */
 	public static void main(String[] args) {
 		try {
@@ -41,7 +43,9 @@ public class GUIKontroler {
 			}
 		});
 	}
-
+	/**
+	 * Metoda koja gasi aplikaciju.
+	 */
 	
 	public static void ugasiAplikaciju() {
 		int opcija = JOptionPane.showConfirmDialog(gp.getContentPane(),
@@ -51,13 +55,18 @@ public class GUIKontroler {
 		if (opcija == JOptionPane.YES_OPTION)
 			System.exit(0);
 	}
-	
+	/**
+	  * Metoda koja otvara prozor za rezervacije.
+	  */
 	
 	public static void prikaziRezervacije(){
 		RezervacijeGUI rezervacije = new RezervacijeGUI();
 		rezervacije.setVisible(true);
 		rezervacije.setLocationRelativeTo(gp.getContentPane());	
 	}
+	/**
+	  * Metoda koja otvara prozor za prikaz filmova.
+	  */
 	public static void prikaziFilmove() {
 		PrikazFilmovaGUI prikazi = new PrikazFilmovaGUI();
 		prikazi.setVisible(true);
