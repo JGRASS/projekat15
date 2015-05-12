@@ -44,6 +44,10 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GlavniProzor extends JFrame {
 
@@ -67,53 +71,33 @@ public class GlavniProzor extends JFrame {
 	private JLabel lblBrojSala;
 	private JLabel lblApsolutnoNebitan;
 	private JLabel label;
+	private JPopupMenu popupMenu;
+	private JMenuItem mntmDostupniFilmovi;
+	private JMenuItem mntmRezerviiKarte;
+	private JMenuItem mntmExit_1;
+	private JPopupMenu popupMenu_1;
+	private JPopupMenu popupMenu_2;
+	private JMenuItem mntmExit_2;
+	private JMenuItem mntmDostupniFilmovi_1;
+	private JMenuItem mntmRezerviiKarte_1;
 	
 	
 	
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            UIManager.put("nimbusBase", new ColorUIResource(13, 140, 165));
-                    UIManager.put("control", new ColorUIResource(250,250,255));
-                    UIManager.put("textForeground", new ColorUIResource(25, 9, 64));
-                   
-                    break;
-		        }
-		    }
-		} catch (Exception e) {
-		   
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GlavniProzor frame = new GlavniProzor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
 	public GlavniProzor() {
-		setResizable(false);
-		setTitle("Bioskop Eclipse\r\n");
+		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
-				ugasiAplikaciju();
+				GUIKontroler.ugasiAplikaciju();
 			}
 		});
+		setResizable(false);
+		setTitle("Bioskop Eclipse\r\n");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GlavniProzor.class.getResource("/icons/logo.png")));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 500, 400);
@@ -139,12 +123,10 @@ public class GlavniProzor extends JFrame {
 	private JButton getBtnPrikaz() {
 		if (btnPrikaz == null) {
 			btnPrikaz = new JButton("Vidi dostupne filmove");
+			btnPrikaz.setToolTipText("Otvorite stranu sa prikazima najnovijih filmova!");
 			btnPrikaz.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					PrikazFilmovaGUI prikazi = new PrikazFilmovaGUI();
-					prikazi.setVisible(true);
-					prikazi.setLocationRelativeTo(contentPane);
-					
+					GUIKontroler.prikaziFilmove();
 				}
 			});
 		}
@@ -152,24 +134,19 @@ public class GlavniProzor extends JFrame {
 	}
 	private JButton getBtnRezervisiKarte() {
 		if (btnRezervisiKarte == null) {
-			btnRezervisiKarte = new JButton("Rezervisi karte");
+			btnRezervisiKarte = new JButton("Rezervi\u0161i karte");
+			btnRezervisiKarte.setToolTipText("Otvorite stranu za rezervacije!");
 			btnRezervisiKarte.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					RezervacijeGUI rezervacije = new RezervacijeGUI();
-					rezervacije.setVisible(true);
-					rezervacije.setLocationRelativeTo(contentPane);				}
+					GUIKontroler.prikaziRezervacije();			}
 			});
 			btnRezervisiKarte.setPreferredSize(new Dimension(133, 23));
 		}
 		return btnRezervisiKarte;
 	}
 	
-	private void ugasiAplikaciju(){
-		int returnVal =JOptionPane.showConfirmDialog(contentPane, "Da li ste sigurni da zelite da izadjete", "Exit", JOptionPane.YES_NO_OPTION);
-		if(returnVal == JOptionPane.YES_OPTION){
-			System.exit(0);
-		}
-	}
+	
+	
 	private JMenuBar getMenuBar_1() {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
@@ -189,7 +166,7 @@ public class GlavniProzor extends JFrame {
 			mntmExit = new JMenuItem("Exit");
 			mntmExit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					ugasiAplikaciju();
+					GUIKontroler.ugasiAplikaciju();
 				}
 			});
 			mntmExit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, InputEvent.ALT_MASK));
@@ -210,6 +187,7 @@ public class GlavniProzor extends JFrame {
 			panel = new JPanel();
 			panel.setName("");
 			panel.setLayout(null);
+			addPopup(panel, getPopupMenu_2());
 			panel.add(getLblNewLabel());
 			panel.add(getButton());
 			panel.add(getButton_1());
@@ -263,6 +241,7 @@ public class GlavniProzor extends JFrame {
 		if (panel_2 == null) {
 			panel_2 = new JPanel();
 			panel_2.setLayout(null);
+			addPopup(panel_2, getPopupMenu());
 			panel_2.add(getLblDobrodosliUBioskop());
 			panel_2.add(getLblInfo());
 			panel_2.add(getLblLokacijaNepoznata());
@@ -289,7 +268,7 @@ public class GlavniProzor extends JFrame {
 	}
 	private JLabel getLblLokacijaNepoznata() {
 		if (lblLokacijaNepoznata == null) {
-			lblLokacijaNepoznata = new JLabel("Lokacija: nepoznata");
+			lblLokacijaNepoznata = new JLabel("Lokacija: Java");
 			lblLokacijaNepoznata.setBounds(60, 87, 116, 14);
 		}
 		return lblLokacijaNepoznata;
@@ -303,7 +282,7 @@ public class GlavniProzor extends JFrame {
 	}
 	private JLabel getLblApsolutnoNebitan() {
 		if (lblApsolutnoNebitan == null) {
-			lblApsolutnoNebitan = new JLabel("Apsolutno nebitan tekst ali nemam ideju sta da stavim ovamo");
+			lblApsolutnoNebitan = new JLabel("Radno vreme bioskopa zavisi od poèetka prve projekcije.");
 			lblApsolutnoNebitan.setBounds(60, 137, 388, 14);
 		}
 		return lblApsolutnoNebitan;
@@ -315,5 +294,107 @@ public class GlavniProzor extends JFrame {
 			label.setBounds(348, 24, 100, 90);
 		}
 		return label;
+	}
+	private JPopupMenu getPopupMenu() {
+		if (popupMenu == null) {
+			popupMenu = new JPopupMenu();
+			popupMenu.add(getMntmDostupniFilmovi());
+			popupMenu.add(getMntmRezerviiKarte());
+			popupMenu.add(getMntmExit_1());
+		}
+		return popupMenu;
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
+	private JMenuItem getMntmDostupniFilmovi() {
+		if (mntmDostupniFilmovi == null) {
+			mntmDostupniFilmovi = new JMenuItem("Dostupni filmovi");
+			mntmDostupniFilmovi.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziFilmove();
+				}
+			});
+		}
+		return mntmDostupniFilmovi;
+	}
+	private JMenuItem getMntmRezerviiKarte() {
+		if (mntmRezerviiKarte == null) {
+			mntmRezerviiKarte = new JMenuItem("Rezervi\u0161i karte");
+			mntmRezerviiKarte.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziRezervacije();
+				}
+			});
+		}
+		return mntmRezerviiKarte;
+	}
+	private JMenuItem getMntmExit_1() {
+		if (mntmExit_1 == null) {
+			mntmExit_1 = new JMenuItem("Exit");
+			mntmExit_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.ugasiAplikaciju();
+				}
+			});
+		}
+		return mntmExit_1;
+	}
+	
+	private JPopupMenu getPopupMenu_2() {
+		if (popupMenu_2 == null) {
+			popupMenu_2 = new JPopupMenu();
+			popupMenu_2.add(getMntmDostupniFilmovi_1());
+			popupMenu_2.add(getMntmRezerviiKarte_1());
+			popupMenu_2.add(getMntmExit_2());
+		}
+		return popupMenu_2;
+	}
+	private JMenuItem getMntmExit_2() {
+		if (mntmExit_2 == null) {
+			mntmExit_2 = new JMenuItem("Exit");
+			mntmExit_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.ugasiAplikaciju();
+				}
+			});
+		}
+		return mntmExit_2;
+	}
+	private JMenuItem getMntmDostupniFilmovi_1() {
+		if (mntmDostupniFilmovi_1 == null) {
+			mntmDostupniFilmovi_1 = new JMenuItem("Dostupni filmovi");
+			mntmDostupniFilmovi_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziFilmove();
+				}
+			});
+		}
+		return mntmDostupniFilmovi_1;
+	}
+	private JMenuItem getMntmRezerviiKarte_1() {
+		if (mntmRezerviiKarte_1 == null) {
+			mntmRezerviiKarte_1 = new JMenuItem("Rezervi\u0161i karte");
+			mntmRezerviiKarte_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziRezervacije();
+				}
+			});
+		}
+		return mntmRezerviiKarte_1;
 	}
 }
