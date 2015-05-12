@@ -28,7 +28,7 @@ public class PomocnaProjekcija {
 
 	/**
 	 * postavlja vrednost atributa naziv filma na unetu vrednost
-	 * @param String nazivFilma
+	 * @param nazivFilma kao String
 	 * @throws java.lang.RuntimeException
 	 * <ul>
 	 *<li>unet naslov null</li>
@@ -51,7 +51,7 @@ public class PomocnaProjekcija {
 
 	/**
 	 * postavlja vrednost atributa sala na unetu vrednost
-	 * @param String sala
+	 * @param sala kao String
 	 * @throws java.lang.RuntimeException
 	 * <ul>
 	 *<li>uneta sala null</li>
@@ -75,7 +75,7 @@ public class PomocnaProjekcija {
 
 	/**
 	 *  postavlja vrednost atributa vreme na unetu vrednost
-	 * @param int vreme
+	 * @param vreme kao int
 	 * @throws java.lang.RuntimeException
 	 * <ul>
 	 *<li>uneto vreme manje ili jednako 0</li>
