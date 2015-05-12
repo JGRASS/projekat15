@@ -125,36 +125,7 @@ public class RezervacijeGUI extends JFrame {
 	 */
 	LinkedList<PomocnaProjekcija> lista = new LinkedList<>();
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            UIManager.put("nimbusBase", new ColorUIResource(13, 140, 165));
-                    UIManager.put("control", new ColorUIResource(250,250,255));
-                    UIManager.put("textForeground", new ColorUIResource(25, 9, 64));
-                   
-                    break;
-		        }
-		    }
-		} catch (Exception e) {
-		  
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RezervacijeGUI frame = new RezervacijeGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.

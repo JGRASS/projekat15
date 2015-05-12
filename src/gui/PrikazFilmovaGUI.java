@@ -55,41 +55,13 @@ public class PrikazFilmovaGUI extends JFrame {
 	private JMenuItem mntmRezerviite;
 	private JMenuItem mntmNazad;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			
-		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-		        if ("Nimbus".equals(info.getName())) {
-		            UIManager.setLookAndFeel(info.getClassName());
-		            UIManager.put("nimbusBase", new ColorUIResource(13, 140, 165));                   
-                    UIManager.put("control", new ColorUIResource(250,250,255));
-                    UIManager.put("textForeground", new ColorUIResource(25, 9, 64));
-                   
-                    break;
-		        }
-		    }
-		} catch (Exception e) {
-		    
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PrikazFilmovaGUI frame = new PrikazFilmovaGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public PrikazFilmovaGUI() {
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PrikazFilmovaGUI.class.getResource("/icons/logo.png")));
 		setTitle("Filmovi u ponudi");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -183,6 +155,9 @@ public class PrikazFilmovaGUI extends JFrame {
 		}
 		return panel_2;
 	}
+	/**Dugme Rezervisite. Klikom na ovo dugme pokrece se prozor za rezervaciju karata i nestaje prozor za prikaz filmova.
+	 * @return JButton
+	 */
 	private JButton getBtnRezerviite() {
 		if (btnRezerviite == null) {
 			btnRezerviite = new JButton("Rezervi\u0161ite");
