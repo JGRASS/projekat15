@@ -1,12 +1,14 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ColorUIResource;
 
 import java.awt.Dimension;
 
@@ -21,6 +23,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
@@ -71,6 +75,21 @@ public class GlavniProzor extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            UIManager.put("nimbusBase", new ColorUIResource(13, 140, 165));
+                    UIManager.put("control", new ColorUIResource(250,250,255));
+                    UIManager.put("textForeground", new ColorUIResource(25, 9, 64));
+                   
+                    break;
+		        }
+		    }
+		} catch (Exception e) {
+		   
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

@@ -1,11 +1,15 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ColorUIResource;
 
 public class PrikazFilmovaGUI extends JFrame {
 
@@ -15,6 +19,21 @@ public class PrikazFilmovaGUI extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			
+		    for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		        if ("Nimbus".equals(info.getName())) {
+		            UIManager.setLookAndFeel(info.getClassName());
+		            UIManager.put("nimbusBase", new ColorUIResource(13, 140, 165));                   
+                    UIManager.put("control", new ColorUIResource(250,250,255));
+                    UIManager.put("textForeground", new ColorUIResource(25, 9, 64));
+                   
+                    break;
+		        }
+		    }
+		} catch (Exception e) {
+		    
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
