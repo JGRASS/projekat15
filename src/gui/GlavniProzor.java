@@ -36,7 +36,7 @@ import javax.swing.JLabel;
 
 import java.awt.Font;
 
-import main.Utility;
+
 import net.miginfocom.swing.MigLayout;
 
 import java.awt.FlowLayout;

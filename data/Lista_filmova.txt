@@ -1,2 +1,4 @@
-Avengers: Age of Ultron;Joss Whedon;Sci-fi;8.1;/posteri/avengers.jpg;
-Hobbit;Piter Jackson;Adventure;9.0;/posteri/hobbit.jpg;
+OSVETNICI - ERA ALTRONA;Joss Whedon;akcija, avantura;Studio Marvel predstavlja „Osvetnici – Era Altrona“, epski nastavak najuspešnijeg filma o superherojima svih vremena.;8.1;/posteri/a.jpg;
+PAKLENE ULICE 7;James Wan;akcija, krimi;Nastavljajuæi globalne podvige u ovoj nezaustavljivoj franšizi zasnovanoj na brzini, Vin Dizel, Pol Voker i Dvejn Džonson predvode povratnièku ekipu glumaca u „Paklenim ulicama 7“.;7.8;/posteri/pp7.jpg;
+BEZVREMENSKA ADALINE;Lee Toland Krieger;drama, romantièni/ljubavni;Inspirativna ljubavna prièa sa Blejk Lajvli, Harisonom Fordom i Majklom Huismanom, Bezvremenska Adaline je film za koji su kostime kreirale modne kuæe Dior i Guèi!;7.4;/posteri/ba.jpg;
+VRUÆA POTERA;Anne Fletcher;komedija;Nezaboravna komedija s neodoljivom Sofijom Vergarom i dobitnicom Oskara Ris Viderspun!;4.7;/posteri/vp.jpg;
