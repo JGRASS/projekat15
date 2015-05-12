@@ -7,6 +7,15 @@ public class Film {
 	private String zanr;
 	private String ocena;
 	private String adresaSlike;
+	private String opis;
+
+	public String getOpis() {
+		return opis;
+	}
+
+	public void setOpis(String opis) {
+		this.opis = opis;
+	}
 
 	public String getAdresaSlike() {
 		return adresaSlike;
@@ -18,7 +27,7 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return nazivFilma + ", " + zanr +", " +ocena;
+		return nazivFilma;
 	}
 
 	public String getNazivFilma() {

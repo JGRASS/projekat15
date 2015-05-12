@@ -1,17 +1,14 @@
-package main;
+package sistemskeoperacije;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 
-public class Utility {
+import main.Film;
 
-	/**
-	 * Metoda koja ucitava podatke iz fajla
-	 * 
-	 * @return LinkedList<Film>
-	 */
+public class SOUcitajIzFajla {
+
 	public static LinkedList<Film> ucitajIzFajla(){
 		LinkedList<Film> lista = new LinkedList<>();
 		
@@ -29,9 +26,12 @@ public class Utility {
 				film.setNazivFilma(podaci[0]);
 				film.setReziser(podaci[1]);
 				film.setZanr(podaci[2]);
-				film.setOcena(podaci[3]);
-				film.setAdresaSlike(podaci[4]);
+				film.setOpis(podaci[3]);
+				film.setOcena(podaci[4]);
+				film.setAdresaSlike(podaci[5]);
 				lista.add(film);
+				
+				
 			}
 			
 			in.close();
@@ -42,4 +42,5 @@ public class Utility {
 		
 		return lista;
 	}
+
 }
