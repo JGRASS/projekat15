@@ -7,7 +7,11 @@ import java.util.LinkedList;
 
 public class Utility {
 
-	
+	/**
+	 * Metoda koja ucitava podatke iz fajla
+	 * 
+	 * @return LinkedList<Film>
+	 */
 	public static LinkedList<Film> ucitajIzFajla(){
 		LinkedList<Film> lista = new LinkedList<>();
 		

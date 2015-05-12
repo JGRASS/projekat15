@@ -136,6 +136,10 @@ public class GlavniProzor extends JFrame {
 		}
 		return panel_1;
 	}
+	/**
+	 * Metoda koja klikom na dugme pokrece prozor za prikaz filmova.
+	 * @return JButton
+	 */
 	private JButton getBtnPrikaz() {
 		if (btnPrikaz == null) {
 			btnPrikaz = new JButton("Vidi dostupne filmove");
@@ -150,6 +154,10 @@ public class GlavniProzor extends JFrame {
 		}
 		return btnPrikaz;
 	}
+	/**
+	 * Metoda koja klikom na dugme pokrece prozor za rezervaciju karata
+	 * @return JButton
+	 */
 	private JButton getBtnRezervisiKarte() {
 		if (btnRezervisiKarte == null) {
 			btnRezervisiKarte = new JButton("Rezervisi karte");
@@ -163,7 +171,9 @@ public class GlavniProzor extends JFrame {
 		}
 		return btnRezervisiKarte;
 	}
-	
+	/**
+	 * Metoda koja sluzi za zatvaranje aplikacije uz prethodno postavljeno pitanje
+	 */
 	private void ugasiAplikaciju(){
 		int returnVal =JOptionPane.showConfirmDialog(contentPane, "Da li ste sigurni da zelite da izadjete", "Exit", JOptionPane.YES_NO_OPTION);
 		if(returnVal == JOptionPane.YES_OPTION){
@@ -225,6 +235,10 @@ public class GlavniProzor extends JFrame {
 		}
 		return lblNewLabel;
 	}
+	/**
+	 * Metoda koja klikom na dugme sluzi za navigaciju kroz galeriju
+	 * @return JButton
+	 */
 	private JButton getButton() {
 		if (button == null) {
 			button = new JButton("<");
@@ -242,6 +256,10 @@ public class GlavniProzor extends JFrame {
 		}
 		return button;
 	}
+	/**
+	 * Metoda koja vrsi promenu slike za galeriju
+	 * @return JButton
+	 */
 	private JButton getButton_1() {
 		if (button_1 == null) {
 			button_1 = new JButton(">");
