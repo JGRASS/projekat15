@@ -253,7 +253,9 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 	private JComboBox getComboBoxFilmovi() {
 		if (comboBoxFilmovi == null) {
 			comboBoxFilmovi = new JComboBox();
-
+			for (int i = 0; i < listaFilmova.size(); i++) {
+				comboBoxFilmovi.addItem(listaFilmova.get(i));
+			}
 			comboBoxFilmovi.setBounds(10, 58, 177, 28);
 		comboBoxFilmovi.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
