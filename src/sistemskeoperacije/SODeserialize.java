@@ -21,17 +21,16 @@ public class SODeserialize {
 			try {
 				while(true){
 					PomocnaProjekcija pom = (PomocnaProjekcija) in.readObject();
-					if (pom == null) break;
+				
 					lista.add(pom);
+					
 				}
+				
 			} catch (EOFException | ClassNotFoundException e) {
 				
 			}
-			
-			in.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 		
 		return lista;

@@ -121,7 +121,8 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 	/**
 	 * lista u kojoj se nalaze podaci o svim rezervisanjima
 	 */
-	LinkedList<PomocnaProjekcija> lista = SODeserialize.deserialize();
+	LinkedList<PomocnaProjekcija> lista = new LinkedList<>();
+	
 	
 
 	private JLabel label;
@@ -260,7 +261,7 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 			comboBoxFilmovi.setBounds(10, 58, 177, 28);
 		comboBoxFilmovi.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				
+
 					if(comboBoxFilmovi.getSelectedItem().toString().equals(listaFilmova.get(0).getNazivFilma())) {
 						 comboBoxSala.setEnabled(true);
 							comboBoxSala.setModel(new DefaultComboBoxModel(new String[] {"Sala 4"}));

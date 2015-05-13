@@ -7,6 +7,8 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.plaf.ColorUIResource;
 
+import sistemskeoperacije.SODeserialize;
+
 
 
 public class GUIKontroler {
@@ -62,7 +64,8 @@ public class GUIKontroler {
 	public static void prikaziRezervacije(){
 		RezervacijeGUI rezervacije = new RezervacijeGUI();
 		rezervacije.setVisible(true);
-		rezervacije.setLocationRelativeTo(gp.getContentPane());	
+		rezervacije.setLocationRelativeTo(gp.getContentPane());
+		rezervacije.lista.addAll(SODeserialize.deserialize());
 	}
 	/**
 	  * Metoda koja otvara prozor za prikaz filmova.
