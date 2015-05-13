@@ -18,7 +18,7 @@ public class SOSerialize {
 	public static void serialize(LinkedList<PomocnaProjekcija> lista){
 		
 		try {
-			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("/data/serialize.dat")));
+			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("data/serialize.out")));
 			
 			for (int i = 0; i < lista.size(); i++) {
 				out.writeObject(lista.get(i));
@@ -26,7 +26,7 @@ public class SOSerialize {
 			
 			out.close();
 		} catch (IOException e) {
-		
+		System.out.println("sshit happens "+e);
 		}
 	}
 

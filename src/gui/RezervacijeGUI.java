@@ -255,7 +255,7 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 			comboBoxFilmovi = new JComboBox();
 
 			comboBoxFilmovi.setBounds(10, 58, 177, 28);
-			comboBoxFilmovi.addActionListener(new ActionListener() {
+		comboBoxFilmovi.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				
 					if(comboBoxFilmovi.getSelectedItem().toString().equals(listaFilmova.get(0).getNazivFilma())) {
@@ -369,8 +369,8 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 							+comboBoxSala.getSelectedItem().toString()+" \nVreme "+comboBoxVreme.getSelectedItem().toString()
 							+"\nUkupna cena ulaznica je "+ Integer.parseInt(textFieldCena.getText().toString())*vratiBrojUlaznica(),"Uspesno obavljena rezervacija", JOptionPane.INFORMATION_MESSAGE);
 						}
-					}		
-				}
+					}
+									}
 			});
 
 
