@@ -73,7 +73,7 @@ public class PrikazFilmovaGUI extends JFrame {
 	 */
 	public PrikazFilmovaGUI() {
 		setResizable(false);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(PrikazFilmovaGUI.class.getResource("/icons/logo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(PrikazFilmovaGUI.class.getResource("/icons/cinema.png")));
 		setTitle("Filmovi u ponudi");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
