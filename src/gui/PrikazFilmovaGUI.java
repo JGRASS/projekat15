@@ -29,13 +29,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import sistemskeoperacije.SOUcitajIzFajla;
+
 import java.awt.Toolkit;
+
 import javax.swing.JButton;
+
 import java.awt.Component;
+
 import javax.swing.JPopupMenu;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JMenuItem;
+import javax.swing.JSeparator;
 
 public class PrikazFilmovaGUI extends JFrame {
 
@@ -57,6 +64,7 @@ public class PrikazFilmovaGUI extends JFrame {
 	private JPopupMenu popupMenu;
 	private JMenuItem mntmRezerviite;
 	private JMenuItem mntmNazad;
+	private JLabel label;
 
 	
 
@@ -120,6 +128,7 @@ public class PrikazFilmovaGUI extends JFrame {
 	private JComboBox getComboBox() {
 		if (comboBox == null) {
 			comboBox = new JComboBox();
+			comboBox.setToolTipText("Odaberite neki film iz ponude!");
 			comboBox.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					String value=comboBox.getSelectedItem().toString();
@@ -171,6 +180,7 @@ public class PrikazFilmovaGUI extends JFrame {
 	private JTextArea getTekst() {
 		if (Tekst == null) {
 			Tekst = new JTextArea();
+			Tekst.setToolTipText("Opis filma!");
 			Tekst.setWrapStyleWord(true);
 			Tekst.setLineWrap(true);
 			Tekst.setEditable(false);
@@ -185,6 +195,7 @@ public class PrikazFilmovaGUI extends JFrame {
 		if (panel_2 == null) {
 			panel_2 = new JPanel();
 			panel_2.setPreferredSize(new Dimension(100, 200));
+			panel_2.add(getLabel());
 			panel_2.add(getBtnRezerviite());
 			panel_2.add(getBtnNaPoetnu());
 		}
@@ -285,5 +296,13 @@ public class PrikazFilmovaGUI extends JFrame {
 			});
 		}
 		return mntmNazad;
+	}
+	private JLabel getLabel() {
+		if (label == null) {
+			label = new JLabel("");
+			label.setIcon(new ImageIcon(GlavniProzor.class.getResource("/galerija/4.gif")));
+			label.setBounds(348, 24, 100, 90);
+		}
+		return label;
 	}
 }

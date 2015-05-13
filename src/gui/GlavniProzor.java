@@ -48,6 +48,7 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JSeparator;
 
 public class GlavniProzor extends JFrame {
 
@@ -167,12 +168,49 @@ public class GlavniProzor extends JFrame {
 		if (menuBar == null) {
 			menuBar = new JMenuBar();
 			menuBar.add(getMnFile());
+			
+			JMenu mnAbout = new JMenu("About");
+			menuBar.add(mnAbout);
+			
+			JMenuItem mntmAutori = new JMenuItem("Autori");
+			mntmAutori.setMnemonic('a');
+			mntmAutori.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					JOptionPane.showMessageDialog(contentPane,
+							"Mladen Saviæ\nMina Marjanoviæ\nJelena Maliæ", "Autori",
+							JOptionPane.INFORMATION_MESSAGE);
+				}
+			});
+			mnAbout.add(mntmAutori);
 		}
 		return menuBar;
 	}
 	private JMenu getMnFile() {
 		if (mnFile == null) {
 			mnFile = new JMenu("File");
+			
+			JMenuItem mntmVidiFilmove = new JMenuItem("Vidi filmove");
+			mntmVidiFilmove.setMnemonic('f');
+			mntmVidiFilmove.setIcon(new ImageIcon(GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/Directory.gif")));
+			mntmVidiFilmove.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.prikaziFilmove();
+				}
+			});
+			mnFile.add(mntmVidiFilmove);
+			
+			JMenuItem mntmRezerviiKarte_2 = new JMenuItem("Rezervi\u0161i karte");
+			mntmRezerviiKarte_2.setMnemonic('r');
+			mntmRezerviiKarte_2.setIcon(new ImageIcon(GlavniProzor.class.getResource("/com/sun/java/swing/plaf/windows/icons/DetailsView.gif")));
+			mntmRezerviiKarte_2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				GUIKontroler.prikaziRezervacije();
+				}
+			});
+			mnFile.add(mntmRezerviiKarte_2);
+			
+			JSeparator separator = new JSeparator();
+			mnFile.add(separator);
 			mnFile.add(getMntmExit());
 		}
 		return mnFile;

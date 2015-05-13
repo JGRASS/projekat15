@@ -10,6 +10,7 @@ import java.util.LinkedList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -125,7 +126,7 @@ public class RezervacijeGUI extends JFrame {
 	 */
 	LinkedList<PomocnaProjekcija> lista = new LinkedList<>();
 	
-	
+	private JLabel label;
 
 	/**
 	 * Create the frame.
@@ -157,8 +158,19 @@ public class RezervacijeGUI extends JFrame {
 		contentPane.add(getRadioButton4());
 		contentPane.add(getRadioButton5());
 		
+		
+		contentPane.add(getLabel());
+		
 	}
 	
+	private JLabel getLabel() {
+		if (label == null) {
+			label = new JLabel("");
+			label.setIcon(new ImageIcon(GlavniProzor.class.getResource("/galerija/4.gif")));
+			label.setBounds(315, 97, 100, 90);
+		}
+		return label;
+	}
 
 	/**
 	 * metoda koja vraca label Film
@@ -193,6 +205,7 @@ public class RezervacijeGUI extends JFrame {
 	private JComboBox getComboBoxSala() {
 		if (comboBoxSala == null) {
 			comboBoxSala = new JComboBox();
+			comboBoxSala.setToolTipText("Odaberite salu u kojoj \u0107ete gledati film!");
 			comboBoxSala.setEnabled(false);
 			comboBoxSala.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -239,6 +252,7 @@ public class RezervacijeGUI extends JFrame {
 	private JComboBox getComboBoxFilmovi() {
 		if (comboBoxFilmovi == null) {
 			comboBoxFilmovi = new JComboBox();
+			comboBoxFilmovi.setToolTipText("Odaberite film u ponudi!");
 			comboBoxFilmovi.setModel(new DefaultComboBoxModel(new String[] {"Paklene ulice 7", "Bezvremenska Adaline", "Vruca potera"}));
 			comboBoxFilmovi.setBounds(10, 58, 177, 28);
 			comboBoxFilmovi.addActionListener(new ActionListener() {
@@ -285,6 +299,7 @@ public class RezervacijeGUI extends JFrame {
 	private JTextField getTextFieldUnesiImeIPrezime() {
 		if (textFieldUnesiImeIPrezime == null) {
 			textFieldUnesiImeIPrezime = new JTextField();
+			textFieldUnesiImeIPrezime.setToolTipText("Unesite svoje ime i prezime!");
 			textFieldUnesiImeIPrezime.setBounds(10, 207, 177, 28);
 			textFieldUnesiImeIPrezime.setColumns(10);
 		}
@@ -298,6 +313,7 @@ public class RezervacijeGUI extends JFrame {
 	private JComboBox getComboBoxVreme() {
 		if (comboBoxVreme == null) {
 			comboBoxVreme = new JComboBox();
+			comboBoxVreme.setToolTipText("Odaberite vreme kada \u0107ete gledati film!");
 			comboBoxVreme.setEnabled(false);
 			
 			comboBoxVreme.setBounds(360, 58, 73, 28);
@@ -360,7 +376,7 @@ public class RezervacijeGUI extends JFrame {
 					
 				}
 			});
-			btnRezervii.setBounds(280, 188, 151, 50);
+			btnRezervii.setBounds(270, 196, 151, 50);
 		}
 		return btnRezervii;
 	}
@@ -396,8 +412,9 @@ public class RezervacijeGUI extends JFrame {
 	private JTextField getTextFieldCena() {
 		if (textFieldCena == null) {
 			textFieldCena = new JTextField();
+			textFieldCena.setToolTipText("Cena jedne ulaznice!");
 			textFieldCena.setEditable(false);
-			textFieldCena.setBounds(312, 132, 86, 28);
+			textFieldCena.setBounds(193, 132, 86, 28);
 			textFieldCena.setColumns(10);
 		}
 		return textFieldCena;
@@ -410,7 +427,7 @@ public class RezervacijeGUI extends JFrame {
 	private JLabel getLblCenaUlaznice() {
 		if (lblCenaUlaznice == null) {
 			lblCenaUlaznice = new JLabel("Cena ulaznice");
-			lblCenaUlaznice.setBounds(314, 107, 84, 14);
+			lblCenaUlaznice.setBounds(193, 107, 84, 14);
 		}
 		return lblCenaUlaznice;
 	}
