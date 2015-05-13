@@ -37,6 +37,9 @@ public class Film {
 	 * @param opis Nova vrednost za atribut opis.
 	 */
 	public void setOpis(String opis) {
+		if( opis == null || opis.isEmpty()) {
+			throw new RuntimeException("Opis ne sme biti null ili prazan String");
+		}
 		this.opis = opis;
 	}
 	/**
@@ -51,6 +54,9 @@ public class Film {
 	 * @param adresaSlike Nova vrednost za atribut adresaSlike.
 	 */
 	public void setAdresaSlike(String adresaSlike) {
+		if(adresaSlike == null || adresaSlike.isEmpty()) {
+			throw new RuntimeException("Ne sme biti null ili prazan String");
+		}
 		this.adresaSlike = adresaSlike;
 	}
 	/**
@@ -73,6 +79,9 @@ public class Film {
 	 * @param nazivFilma Nova vrednost za atribut nazivFilma.
 	 */
 	public void setNazivFilma(String nazivFilma) {
+		if( nazivFilma == null || nazivFilma.isEmpty()) {
+			throw new RuntimeException("Naziv filma ne sme biti null ili prazan String");
+		}
 		this.nazivFilma = nazivFilma;
 	}
 	/**
@@ -87,6 +96,9 @@ public class Film {
 	 * @param reziser Nova vrednost za atribut reziser.
 	 */
 	public void setReziser(String reziser) {
+		if( reziser == null || reziser.isEmpty()) {
+			throw new RuntimeException("Ime rezisera ne sme biti null ili prazan String");
+		}
 		this.reziser = reziser;
 	}
 	/**
@@ -101,6 +113,9 @@ public class Film {
 	 * @param zanr Nova vrednost za atribut zanr.
 	 */
 	public void setZanr(String zanr) {
+		if( zanr == null || zanr.isEmpty()) {
+			throw new RuntimeException("Zanr ne sme biti null ili prazan String");
+		}
 		this.zanr = zanr;
 	}
 	/**
@@ -115,6 +130,9 @@ public class Film {
 	 * @param ocena Nova vrednost za atribut ocena.
 	 */
 	public void setOcena(String ocena) {
+		if( ocena == null || ocena.isEmpty()) {
+			throw new RuntimeException("ne sme biti null ili prazan String");
+		}
 		this.ocena = ocena;
 	}
 }
