@@ -2,6 +2,7 @@ package sistemskeoperacije;
 
 import static org.junit.Assert.*;
 
+
 import java.io.BufferedOutputStream;
 import java.io.EOFException;
 import java.io.FileInputStream;
@@ -39,6 +40,6 @@ public class SODeserializeTest {
 		lista.add(pom);
 		SOSerialize.serialize(lista);
 		assertEquals(pom, SODeserialize.deserialize().getLast());
-	}
+	}}
 
-}
+

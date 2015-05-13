@@ -2,8 +2,8 @@ package sistemskeoperacije;
 
 import static org.junit.Assert.*;
 
+
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -32,6 +32,7 @@ public class SOUcitajIzFajlaTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-}
+
+
+
+}}
