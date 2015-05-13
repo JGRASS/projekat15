@@ -19,6 +19,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import sistemskeoperacije.SODeserialize;
 import sistemskeoperacije.SOSerialize;
 import sistemskeoperacije.SOUcitajIzFajla;
 import main.Film;
@@ -120,7 +121,7 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 	/**
 	 * lista u kojoj se nalaze podaci o svim rezervisanjima
 	 */
-	LinkedList<PomocnaProjekcija> lista = new LinkedList<>();
+	LinkedList<PomocnaProjekcija> lista = SODeserialize.deserialize();
 	
 
 	private JLabel label;
