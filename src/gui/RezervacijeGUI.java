@@ -24,6 +24,7 @@ import sistemskeoperacije.SOSerialize;
 import sistemskeoperacije.SOUcitajIzFajla;
 import main.Film;
 import main.PomocnaProjekcija;
+import java.awt.Toolkit;
 
 public class RezervacijeGUI extends JFrame implements Serializable{
 
@@ -143,6 +144,7 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 	 * Create the frame.
 	 */
 	public RezervacijeGUI(){
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RezervacijeGUI.class.getResource("/icons/movie.png")));
 		setResizable(false);
 		setTitle("Rezervacije");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
