@@ -14,7 +14,7 @@ public class Clan {
 	/**
 	 * lista rezervacija 
 	 */
-	private LinkedList<Film> rezervacije = new LinkedList<>();
+	private LinkedList<PomocnaProjekcija> rezervacije = new LinkedList<>();
 	/**
 	 * metoda koja vraca ime i prezime
 	 * @return ime i prezime kao String
@@ -27,6 +27,9 @@ public class Clan {
 	 * @param imeIPrezime kao String
 	 */
 	public void setImeIPrezime(String imeIPrezime) {
+		if(imeIPrezime == null || imeIPrezime.isEmpty()) {
+			throw new RuntimeException("Ime i prezime ne sme biti null ili prazan String.");
+		}
 		this.imeIPrezime = imeIPrezime;
 	}
 	/**
@@ -47,14 +50,17 @@ public class Clan {
 	 * metoda koja vraca listu rezervacija
 	 * @return listu rezervacija tipa Film 
 	 */
-	public LinkedList<Film> getRezervacije() {
+	public LinkedList<PomocnaProjekcija> getRezervacije() {
 		return rezervacije;
 	}
 	/**
 	 * metoda koja postavlja vrednost atributa lista na unetu vrednost
 	 * @param rezervacije kao LinkedList<Film>
 	 */
-	public void setRezervacije(LinkedList<Film> rezervacije) {
+	public void setRezervacije(LinkedList<PomocnaProjekcija> rezervacije) {
+		if(rezervacije.isEmpty()) {
+			throw new RuntimeException("Lista ne sme biti prazna.");
+		}
 		this.rezervacije = rezervacije;
 	}
 }

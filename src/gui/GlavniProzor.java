@@ -99,7 +99,9 @@ public class GlavniProzor extends JFrame {
 		});
 		setResizable(false);
 		setTitle("Bioskop Eclipse\r\n");
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GlavniProzor.class.getResource("/icons/movie.png")));
+
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 500, 400);
 		contentPane = new JPanel();

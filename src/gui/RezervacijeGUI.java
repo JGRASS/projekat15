@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
@@ -123,8 +124,6 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 	 * lista u kojoj se nalaze podaci o svim rezervisanjima
 	 */
 	LinkedList<PomocnaProjekcija> lista = new LinkedList<>();
-	
-	
 
 	private JLabel label;
 
@@ -138,6 +137,10 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 	 */
 	private LinkedList<Film> listaFilmova =SOUcitajIzFajla.ucitajIzFajla();
 	
+	/**
+	 * rezervacija koja je izvrsena
+	 */
+	PomocnaProjekcija rezervacija = new PomocnaProjekcija();    
 
 
 	/**
@@ -147,6 +150,7 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 		setIconImage(Toolkit.getDefaultToolkit().getImage(RezervacijeGUI.class.getResource("/icons/movie.png")));
 		setResizable(false);
 		setTitle("Rezervacije");
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 475, 289);
 		contentPane = new JPanel();
@@ -213,7 +217,9 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 	}
 	
 	/**
-	 * metoda koja vraca combobox sa odgovarajucim salama. Pri izboru sale postavlja vremena(comboBoxVreme) davanja filma u toj sali.
+	 * metoda koja vraca combobox sa odgovarajucim salama. 
+	 * U zavisnosti od izabrane sale (i filma) postavlja 
+	 * vreme pocetka projekcije.
 	 * @return combobox Sala
 	 */
 	private JComboBox getComboBoxSala() {
@@ -224,7 +230,7 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 			comboBoxSala.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					for(int i = 0; i<listaFilmova.size(); i++) {
-						for(int j = 1; j<5; j++) {
+						for(int j = 1; j<5; j++) { 
 							if(comboBoxSala.getSelectedItem().toString().equals("Sala "+j) && comboBoxFilmovi.getSelectedItem().toString().equals(listaFilmova.get(i).getNazivFilma())) {
 								comboBoxVreme.setEnabled(true);
 								if(j%2 == 1) {
@@ -250,7 +256,9 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 	}
 
 	/**
-	 * metoda koja vraca combobox sa filmovima koji se prikazuju u bioskopu. Pri izboru filma, postavljaju se sale u kojima se prikazuje film.
+	 *  metoda koja vraca combobox sa filmovima koji se prikazuju u bioskopu.
+	 *  Pri izboru filma, postavljaju se sale u kojima se prikazuje film,
+	 *  kao i cena jedne ulaznice.
 	 * @return combobox Filmovi
 	 */
 	
@@ -263,23 +271,18 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 			comboBoxFilmovi.setBounds(10, 58, 177, 28);
 		comboBoxFilmovi.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-
 					if(comboBoxFilmovi.getSelectedItem().toString().equals(listaFilmova.get(0).getNazivFilma())) {
 						 comboBoxSala.setEnabled(true);
-							comboBoxSala.setModel(new DefaultComboBoxModel(new String[] {"Sala 4"}));
-							textFieldCena.setText("300");
-					}
-					
+						 comboBoxSala.setModel(new DefaultComboBoxModel(new String[] {"Sala 4"}));
+						 textFieldCena.setText("300");
+					}	
 					for(int j = 1; j<listaFilmova.size(); j++) {
-						
 						 if(comboBoxFilmovi.getSelectedItem().toString().equals(listaFilmova.get(j).getNazivFilma())) {
 							 comboBoxSala.setEnabled(true);
-								comboBoxSala.setModel(new DefaultComboBoxModel(new String[] {"Sala "+j, "Sala "+(j+1)}));
-								textFieldCena.setText(+j*100+150+"");
+							 comboBoxSala.setModel(new DefaultComboBoxModel(new String[] {"Sala "+j, "Sala "+(j+1)}));
+							 textFieldCena.setText(+j*100+150+"");
 						 }
 					}
-			
-					
 				}
 			});
 		}
@@ -342,46 +345,41 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 				public void actionPerformed(ActionEvent arg0) {
 					if(textFieldUnesiImeIPrezime.getText().isEmpty()) {    // ako je ime i prezime prazno, poruka da se obavezno popuni
 					JOptionPane.showMessageDialog(contentPane,
-							"Obavezno popuniti polje Ime i prezime", "Obaveštenje",
-							JOptionPane.INFORMATION_MESSAGE);
+							"Obavezno popuniti polje Ime i prezime", 
+							"Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
 				} else {   
-					broj = 0;
-					
-					PomocnaProjekcija rez = new PomocnaProjekcija();
+					broj = 0;  
 				
-					rez.setVreme(((comboBoxVreme.getSelectedItem().toString())));
-					rez.setNazivFilma(comboBoxFilmovi.getSelectedItem().toString());
-					rez.setSala(comboBoxSala.getSelectedItem().toString());
+					rezervacija.setVreme(((comboBoxVreme.getSelectedItem().toString())));
+					rezervacija.setNazivFilma(comboBoxFilmovi.getSelectedItem().toString());
+					rezervacija.setSala(comboBoxSala.getSelectedItem().toString());
 				
-		
 					for(int j = 0; j<lista.size(); j++) {          // proverava koliko ima vec rezervisanih karata za tu projekciju
-						if(rez.equals(lista.get(j))) {
+						if(rezervacija.equals(lista.get(j))) {
 							broj++;
 						}
 					}
-						if(broj+vratiBrojUlaznica()>150) {				// kapacitet sale		
-							JOptionPane.showConfirmDialog(contentPane, "U izabranoj sali nema slobodnih mesta", "Popunjena sala", JOptionPane.OK_CANCEL_OPTION);
+					
+						if(broj+vratiBrojUlaznica()>150) {				// kapacitet sale			
+							JOptionPane.showConfirmDialog(contentPane, "U izabranoj sali nema slobodnih mesta", 
+										"Popunjena sala", JOptionPane.OK_CANCEL_OPTION);
 						} else {
 							for(int i = 0; i<vratiBrojUlaznica(); i++) {          // punimo listu rezervisanih karata
-								lista.add(rez);
+								lista.add(rezervacija);
 							}
 							SOSerialize.serialize(lista);
-					
-					
+
 					int s = textFieldUnesiImeIPrezime.hashCode();
 					
-					JOptionPane.showMessageDialog(contentPane, "Vas kod je "+s+"\nFilm: " 
-					+comboBoxFilmovi.getSelectedItem().toString()+"\n"
-							+comboBoxSala.getSelectedItem().toString()+" \nVreme "+comboBoxVreme.getSelectedItem().toString()
-							+"\nUkupna cena ulaznica je "+ Integer.parseInt(textFieldCena.getText().toString())*vratiBrojUlaznica(),"Uspesno obavljena rezervacija", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(contentPane, "Vas kod je "+s
+							+"\nUkupna cena ulaznica je "+ Integer.parseInt(textFieldCena.getText().toString())*vratiBrojUlaznica(),
+							"Uspesno obavljena rezervacija", JOptionPane.INFORMATION_MESSAGE);
 						}
 					}
 									}
 			});
 
-
 			btnRezervii.setBounds(197, 194, 162, 44);
-
 		}
 		return btnRezervii;
 	}
@@ -508,24 +506,22 @@ public class RezervacijeGUI extends JFrame implements Serializable{
 	 */
 	private int vratiBrojUlaznica() {
 		int brojUlaznica = 0;
-		if(radioButton1.isSelected()) {
+		if(radioButton1.isSelected()) 
 			brojUlaznica = 1;
-			}else {
-				if(radioButton2.isSelected()) {
-					brojUlaznica = 2;
-				} else {
-			
-					if(radioButton3.isSelected()) {
-						brojUlaznica = 3;
-					} else {
-						if(radioButton4.isSelected()) {
-							brojUlaznica = 4;
-						}else {
-							if(radioButton5.isSelected()) brojUlaznica = 5;
-						}
-					}
-				}
-			}
+	
+		if(radioButton2.isSelected()) 
+			brojUlaznica = 2;
+				
+		if(radioButton3.isSelected()) 
+			brojUlaznica = 3;
+					
+		if(radioButton4.isSelected()) 
+			brojUlaznica = 4;
+					
+		if(radioButton5.isSelected()) 
+			brojUlaznica = 5;
+						
+		
 		return brojUlaznica;
 	}
 	
